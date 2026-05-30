@@ -8,19 +8,14 @@ if (isset($_POST['login'])) {
   $contraseña = $_POST['contraseña'];
   $rol = $_POST['rol'];
 
-  // Si la contraseña está en texto plano:
   $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contraseña='$contraseña' AND rol='$rol'";
-
-  // Si la contraseña está en MD5:
-  // $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contraseña=MD5('$contraseña') AND rol='$rol'";
-
   $resultado = $conexion->query($sql);
 
   if ($resultado->num_rows > 0) {
     $_SESSION['usuario'] = $usuario;
     $_SESSION['rol'] = $rol;
     header("Location: dashboard.php");
-    exit(); // <- importante para cortar la ejecución
+    exit();
   } else {
     $error = "Credenciales incorrectas";
   }
@@ -50,4 +45,5 @@ if (isset($_POST['login'])) {
   </div>
 </body>
 </html>
+
 

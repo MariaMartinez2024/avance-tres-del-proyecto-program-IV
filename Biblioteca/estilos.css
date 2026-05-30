@@ -1,51 +1,198 @@
+
+/* ====== Estilos generales ====== */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #f4f6f9;
   margin: 0;
   padding: 0;
+  color: #333;
 }
 
-.login-container, .menu, form, table {
-  margin: 40px auto;
-  width: 80%;
-  background: white;
-  padding: 20px;
+h2, h3 {
+  text-align: center;
+  color: #2c3e50;
+}
+
+a {
+  text-decoration: none;
+  color: #2980b9;
+}
+
+a:hover {
+  color: #1abc9c;
+}
+
+/* ====== Contenedor de login ====== */
+.login-container {
+  width: 350px;
+  margin: 80px auto;
+  padding: 25px;
+  background: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
 
-input, select, button {
+.login-container h2 {
+  margin-bottom: 20px;
+}
+
+.login-container input, 
+.login-container select, 
+.login-container button {
+  width: 100%;
   padding: 10px;
-  margin: 5px;
-  width: 95%;
+  margin: 8px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-button {
-  background-color: #007bff;
-  color: white;
+.login-container button {
+  background-color: #2980b9;
+  color: #fff;
+  font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.login-container button:hover {
+  background-color: #1abc9c;
 }
 
+/* ====== Tablas ====== */
 table {
-  width: 100%;
+  width: 90%;
+  margin: 20px auto;
   border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
 }
 
-th, td {
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+table th {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* ====== Formularios ====== */
+form {
+  width: 80%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+form input, form select, form button {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
+form button {
+  background-color: #27ae60;
+  color: #fff;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #2ecc71;
+}
+
+/* ====== Mensajes ====== */
 .success {
-  color: green;
+  color: #27ae60;
+  font-weight: bold;
+  text-align: center;
 }
 
 .error {
-  color: red;
+  color: #e74c3c;
+  font-weight: bold;
+  text-align: center;
 }
+/* ====== Fondo exclusivo del dashboard ====== */
+body.dashboard-page {
+  background-image: url('img/libros.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== Contenedor del dashboard ====== */
+.dashboard-container {
+  width: 60%;
+  margin: 100px auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+  padding: 40px;
+  text-align: center;
+}
+
+/* ====== Título de bienvenida ====== */
+.dashboard-container h2 {
+  font-size: 36px;
+  color: #fbfaf7;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 5px #000;
+}
+
+/* ====== Enlaces del menú ====== */
+.dashboard-container ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* dos columnas */
+  gap: 20px; /* espacio entre botones */
+  justify-items: center;
+}
+
+.dashboard-container ul li a {
+  display: inline-block;
+  width: 250px;
+  padding: 15px 25px;
+  background-color: #2980b9;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.dashboard-container ul li a:hover {
+  background-color: #1abc9c;
+  transform: scale(1.1);
+}
+
+/* ====== Botón de cerrar sesión ====== */
+.dashboard-container a.logout {
+  display: block;
+  margin: 40px auto 0 auto;
+  width: 200px;
+  padding: 12px 25px;
+  background-color: #e74c3c;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.dashboard-container a.logout:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+

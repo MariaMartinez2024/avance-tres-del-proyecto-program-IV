@@ -1,6 +1,12 @@
+
 <?php 
 include('conexion.php'); 
 session_start();
+
+if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 'Administrador') {
+  header("Location: index.php");
+  exit();
+}
 
 # --- AGREGAR ---
 if (isset($_POST['agregar'])) {
@@ -8,14 +14,14 @@ if (isset($_POST['agregar'])) {
   $autor = $_POST['autor'];
   $categoria = $_POST['categoria'];
   $conexion->query("INSERT INTO libros (titulo, autor, categoria, estado) VALUES ('$titulo','$autor','$categoria','Disponible')");
-  header("Location: libros.php"); // refresca la página
+  header("Location: libros.php");
 }
 
 # --- ELIMINAR ---
 if (isset($_GET['eliminar'])) {
   $id = $_GET['eliminar'];
   $conexion->query("DELETE FROM libros WHERE id_libro=$id");
-  header("Location: libros.php"); // refresca la página
+  header("Location: libros.php");
 }
 
 # --- ACTUALIZAR ---
@@ -26,7 +32,7 @@ if (isset($_POST['actualizar'])) {
   $categoria = $_POST['categoria'];
   $estado = $_POST['estado'];
   $conexion->query("UPDATE libros SET titulo='$titulo', autor='$autor', categoria='$categoria', estado='$estado' WHERE id_libro=$id");
-  header("Location: libros.php"); // refresca la página
+  header("Location: libros.php");
 }
 ?>
 <!DOCTYPE html>
@@ -39,7 +45,6 @@ if (isset($_POST['actualizar'])) {
 <body>
   <h2>Gestión de Libros</h2>
 
-  <!-- Formulario para agregar -->
   <form method="POST">
     <input type="text" name="titulo" placeholder="Título" required>
     <input type="text" name="autor" placeholder="Autor" required>
@@ -47,7 +52,6 @@ if (isset($_POST['actualizar'])) {
     <button type="submit" name="agregar">Agregar Libro</button>
   </form>
 
-  <!-- Tabla de libros -->
   <?php
   $resultado = $conexion->query("SELECT * FROM libros");
   echo "<table><tr><th>Título</th><th>Autor</th><th>Categoría</th><th>Estado</th><th>Acciones</th></tr>";
@@ -64,10 +68,7 @@ if (isset($_POST['actualizar'])) {
           </tr>";
   }
   echo "</table>";
-  ?>
 
-  <!-- Formulario de edición -->
-  <?php
   if (isset($_GET['editar'])) {
     $id = $_GET['editar'];
     $libro = $conexion->query("SELECT * FROM libros WHERE id_libro=$id")->fetch_assoc();
@@ -89,3 +90,4 @@ if (isset($_POST['actualizar'])) {
   ?>
 </body>
 </html>
+
